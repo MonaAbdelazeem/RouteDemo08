@@ -7,6 +7,7 @@ using Demo.DAL.Repositories.Classes;
 using Demo.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace Demo.PL
@@ -35,6 +36,10 @@ namespace Demo.PL
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfiles()));
+
+            builder.Services.AddScoped<IScoppedServises, ScoppedServises>();
+            builder.Services.AddSingleton<ISingltonServise,SingltonServise>();
+            builder.Services.AddTransient<ITransientService,TransientService>();
 
 
             var app = builder.Build();
